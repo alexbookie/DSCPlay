@@ -1,4 +1,4 @@
-$secpasswd = Get-SecureString "NotReallySecure1" -AsPlainText -Force
+$secpasswd = ConvertTo-SecureString "NotReallySecure1" -AsPlainText -Force
 $domainCred = New-Object System.Management.Automation.PSCredential ("psdsc\Administrator", $secpasswd)
 $safemodeAdministratorCred = New-Object System.Management.Automation.PSCredential ("psdsc\Administrator", $secpasswd)
 $userCred = New-Object System.Management.Automation.PSCredential ("psdsc\Administrator", $newpasswd)
