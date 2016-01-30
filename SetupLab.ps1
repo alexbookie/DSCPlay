@@ -57,4 +57,4 @@ configuration PSDSCLab
 $config = Invoke-Expression (Get-content $PSScriptRoot\LabConfig.psd1 -Raw)
 PSDSCLab -configurationData $config
 
-Start-DscConfiguration -ComputerName ps-dc-01 -Wait -Force -Verbose -path .\TestLab -Debug
+Start-DscConfiguration -ComputerName ps-dc-01 -Wait -Force -Verbose -path .\PSDSCLab -Debug
