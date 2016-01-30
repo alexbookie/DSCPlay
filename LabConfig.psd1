@@ -8,7 +8,7 @@
             PSDscAllowPlainTextPassword = $true
         RetryCount = 20 
         RetryIntervalSec = 30 
-        },
+        }
 
     )
 }
