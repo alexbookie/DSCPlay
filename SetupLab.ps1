@@ -1,7 +1,8 @@
 $secpasswd = ConvertTo-SecureString "NotReallySecure1" -AsPlainText -Force
 $domainCred = New-Object System.Management.Automation.PSCredential ("psdsc\Administrator", $secpasswd)
 $safemodeAdministratorCred = New-Object System.Management.Automation.PSCredential ("psdsc\Administrator", $secpasswd)
-$userCred = New-Object System.Management.Automation.PSCredential ("psdsc\Administrator", $newpasswd)
+$newpasswd = ConvertTo-SecureString "StillNotSecure1" -AsPlainText -Force
+$userCred = New-Object System.Management.Automation.PSCredential ("psdsc\dummy", $newpasswd)
 
 configuration PSDSCLab
 {
