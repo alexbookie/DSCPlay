@@ -28,7 +28,7 @@ configuration LabSQL
         { 
             Name          = $MachineName  
             DomainName    = $Domain 
-            Credential    = $Credential  # Credential to join to domain 
+            Credential    = $DomainCredential  # Credential to join to domain 
         } 
          
         
@@ -40,7 +40,7 @@ $config = Invoke-Expression (Get-content $PSScriptRoot\LabConfig.psd1 -Raw)
 LabSQL -configurationData $config `
     -MachineName "ps-sql-01" `
     -Domain "psdsc.waterstonslabs.com" `
-    -DomainCredential (Get-Credential -UserName "psdsc\alex" `
+    -DomainCredential (Get-Credential -UserName "alex" `
         -Message "Domain Admin Credential")
         
 Set-DSCLocalConfigurationManager -Path .\LabSQL -Verbose   
