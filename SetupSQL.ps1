@@ -40,5 +40,5 @@ $config = Invoke-Expression (Get-content $PSScriptRoot\LabConfig.psd1 -Raw)
 LabSQL -configurationData $config `
     -MachineName "ps-sql-01" `
     -Domain "psdsc.waterstonslabs.com" `
-    -Credential (Get-Credential -UserName "psdsc\alex" `
+    -DomainCredential (Get-Credential -UserName "psdsc\alex" `
         -Message "Domain Admin Credential")
