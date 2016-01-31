@@ -73,7 +73,7 @@ PSDSCLab -configurationData $config `
     -domainCred (Get-Credential -UserName psdsc\alex `
         -Message "New Domain Admin Credential") `
     -userCred (Get-Credential -UserName psdsc\dummy `
-        -Message "New Dummy User Credential") `
+        -Message "New Dummy User Credential")
       
 
 # Make sure that LCM is set to continue configuration after reboot            
