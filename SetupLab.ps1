@@ -70,13 +70,13 @@ $config = Invoke-Expression (Get-content $PSScriptRoot\LabConfig.psd1 -Raw)
 PSDSCLab -configurationData $config `
     -safemodeAdministratorCred (Get-Credential -UserName '(Password Only)' `
         -Message "New Domain Safe Mode Administrator Password") `
-    -domainCred (Get-Credential -UserName psdsc\alex `
+    -domainCred (Get-Credential -UserName "psdsc\alex" `
         -Message "New Domain Admin Credential") `
-    -userCred (Get-Credential -UserName psdsc\dummy `
+    -userCred (Get-Credential -UserName "psdsc\dummy" `
         -Message "New Dummy User Credential")
       
 
 # Make sure that LCM is set to continue configuration after reboot            
-Set-DSCLocalConfigurationManager -Path .\PSDSCLab –Verbose   
+Set-DSCLocalConfigurationManager -Path .\PSDSCLab -Verbose   
 
 Start-DscConfiguration -ComputerName ps-dc-01 -Wait -Force -Verbose -path .\PSDSCLab -Debug
