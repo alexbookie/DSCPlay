@@ -9,6 +9,12 @@
         RetryCount = 20 
         RetryIntervalSec = 30 
         }
+        
+        @{
+            Nodename = "ps-sql-01"
+            Role = "SQL"
+            PSDscAllowPlainTextPassword = $true
+        }
 
     )
 }

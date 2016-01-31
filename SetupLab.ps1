@@ -32,9 +32,9 @@ configuration PSDSCLab
             Ensure = 'Present'
             Name = 'RSAT-AD-Tools'
             IncludeAllSubFeature = $true
-        }  
-
-        xADDomain FirstDS
+        }
+        
+         xADDomain FirstDS
         {
             DomainName = $Node.DomainName
             DomainAdministratorCredential = $domaincred
@@ -60,7 +60,6 @@ configuration PSDSCLab
             Ensure = "Present"
             DependsOn = "[xWaitForADDomain]DscForestWait"
         }
-
     }
 }
 
