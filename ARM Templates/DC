@@ -1,0 +1,80 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "type": "string",
+      "defaultValue": "PS-DC-01"
+    },
+    "userName": {
+      "type": "string",
+      "defaultValue": "Alex"
+    },
+    "size": {
+      "type": "string",
+      "defaultValue": "Standard_A2"
+    },
+    "password": {
+      "type": "securestring"
+    },
+    "Clone_a_git_repository.GitRepoURI": {
+      "type": "string",
+      "defaultValue": "https://github.com/alexbookie/DSCPlay.git"
+    },
+    "Clone_a_git_repository.Destination": {
+      "type": "string",
+      "defaultValue": "C:\\Repos"
+    },
+    "Clone_a_git_repository.Branch": {
+      "type": "string",
+      "defaultValue": "master"
+    },
+    "Clone_a_git_repository.PersonalAccessToken": {
+      "type": "securestring"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-05-21-preview",
+      "type": "Microsoft.DevTestLab/environments",
+      "name": "[parameters('name')]",
+      "location": "westeurope",
+      "properties": {
+        "labId": "/subscriptions/ddc7a4e9-efd9-48e9-8f25-6f04e192f577/resourcegroups/PowershellDSCRG587583/providers/Microsoft.DevTestLab/labs/PowershellDSC",
+        "vms": [
+          {
+            "name": "[parameters('name')]",
+            "vmTemplateName": "Windows Server 2012 R2 Datacenter",
+            "size": "[parameters('size')]",
+            "userName": "[parameters('userName')]",
+            "password": "[parameters('password')]",
+            "isAuthenticationWithSshKey": false,
+            "artifacts": [
+              {
+                "artifactId": "/subscriptions/ddc7a4e9-efd9-48e9-8f25-6f04e192f577/resourceGroups/PowershellDSCRG587583/providers/Microsoft.DevTestLab/labs/PowershellDSC/artifactSources/Public%20Repo/artifacts/windows-clone-git-repo",
+                "parameters": [
+                  {
+                    "name": "GitRepoURI",
+                    "value": "[parameters('Clone_a_git_repository.GitRepoURI')]"
+                  },
+                  {
+                    "name": "Destination",
+                    "value": "[parameters('Clone_a_git_repository.Destination')]"
+                  },
+                  {
+                    "name": "Branch",
+                    "value": "[parameters('Clone_a_git_repository.Branch')]"
+                  },
+                  {
+                    "name": "PersonalAccessToken",
+                    "value": "[parameters('Clone_a_git_repository.PersonalAccessToken')]"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
