@@ -15,7 +15,7 @@ configuration LabSQL
     #Import the required DSC Resources 
     Import-DscResource -Module xComputerManagement 
     
-    Node $AllNodes.Where($_.Role -eq "SQL").Nodename
+    Node $AllNodes.Where{$_.Role -eq "SQL"}.Nodename
     {
 
         LocalConfigurationManager 
@@ -42,3 +42,7 @@ LabSQL -configurationData $config `
     -Domain "psdsc.waterstonslabs.com" `
     -DomainCredential (Get-Credential -UserName "psdsc\alex" `
         -Message "Domain Admin Credential")
+        
+Set-DSCLocalConfigurationManager -Path .\LabSQL -Verbose   
+
+Start-DscConfiguration -ComputerName ps-sql-01 -Wait -Force -Verbose -path .\LabSQL -Debug
